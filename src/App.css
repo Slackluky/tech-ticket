@@ -17,9 +17,21 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.layout{
+  height: 100vh;
+}
 
-.App-link {
-  color: #09d3ac;
+.ant-layout-header {
+  height: 64px;
+  padding: 0 50px;
+  line-height: 64px;
+  background: #379683;
+}
+
+.card{
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
 }
 .row{
   height: 100vh;
@@ -77,4 +89,14 @@
     width: 100%;
 
   }
+
+  .ant-layout-header {
+
+    padding: 0 10px;
+    
+  }
+  .ant-layout-content{
+    padding: 0 10px;
+  }
+  
 }
