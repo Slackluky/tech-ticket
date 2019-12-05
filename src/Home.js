@@ -48,7 +48,7 @@ class Home extends Component {
       <Link to='/tech'>
       <Col xs={24} sm={24} md={24} lg={12} xl={12} 
       className="red"
-      style={{backgroundColor: this.state.isHovering?  "#faa0bb":"#fa5183"}}
+      style={{backgroundColor: this.state.isHovering?  "#5cdb95 " : "#379683"}}
       onMouseEnter={this.handleMouseHover}
       onMouseLeave={this.handleMouseHover}>
         <img src={Techimg} alt="Tech" className="img-icon"/>
@@ -60,7 +60,7 @@ class Home extends Component {
     <Link to='/user'>
       <Col xs={24} sm={24} md={24} lg={12} xl={12}
       className="blue"
-      style={{backgroundColor: this.state.isHovering? "#4287f5":"#9ec6fc"}}
+      style={{backgroundColor: this.state.isHovering? "#edf5e1" : "#8ee4af"}}
       onMouseEnter={this.handleMouseHoverB}
       onMouseLeave={this.handleMouseHoverB}
       >
