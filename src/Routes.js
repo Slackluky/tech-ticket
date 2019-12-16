@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Tech from './Tech'
 import User from './User'
@@ -6,11 +6,7 @@ import Home from './Home'
 
 
 
-class Routes extends Component {
-
- 
-  render() {
-    return (
+const Routes = () => (
       <main>
 
         <Switch>
@@ -23,7 +19,6 @@ class Routes extends Component {
    
       
     );
-  }
-}
+
 
 export default Routes;

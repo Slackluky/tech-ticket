@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 // import { Row, Col, Typography} from 'antd';
-import Userimg from './SVG/user.svg'
 import { Link } from 'react-router-dom';
+import firestore from "./firestore";
 
 import {
   Form,
   Input,
-  Tooltip,
   Icon,
   Row,
-  Col,
   Button,
   Card,
-  Layout
+  Layout,
+  message
 } from 'antd';
 const {TextArea } = Input
 const {Header, Content} = Layout
@@ -20,16 +19,43 @@ class UserForm extends Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
+    user:[]
   };
 
+
+
+  makeId() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+  
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
+      if (err) {
+        return;
       }
-    });
+      const user = {
+        ...values,
+        ticketId : this.makeId(),
+        date : new Date().toISOString()
+      };
+      
+       console.log(user)
+       this.props.form.resetFields()
+       message.success('a new ticket is created successfuly');
+      }
+    );
   };
+
+  async addTodo() {
+    await firestore.collection("ticket").add(this.state.user);
+  }
 
   handleConfirmBlur = e => {
     const { value } = e.target;
@@ -64,7 +90,7 @@ class UserForm extends Component {
     return (
       <Layout className="layout">
         <Header>
-          <Link to="/" Component={Icon}>
+          <Link to="/">
           <Icon type="left" style={{color : "white", fontSize: '22px', marginTop: '22px'}} />
           </Link>
         </Header>
@@ -81,7 +107,7 @@ class UserForm extends Component {
                 message: 'Please input your name',
               },
             ],
-          })(<Input  />)}
+          })(<Input name="name" />)}
         </Form.Item>
         <Form.Item
           label={
@@ -92,7 +118,7 @@ class UserForm extends Component {
         >
           {getFieldDecorator('Issue', {
             rules: [{ required: true, message: 'Please input your Issue!', whitespace: true }],
-          })(<TextArea  />)}
+          })(<TextArea name="issue" />)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">

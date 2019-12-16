@@ -1,14 +1,17 @@
 {
   "name": "tech-ticket",
-  "author" : "Luky",
+  "author": "Luky",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@firebase/app": "^0.5.0",
+    "@firebase/firestore": "^1.9.0",
     "antd": "^3.26.0",
     "antd-dayjs-webpack-plugin": "0.0.5",
     "babel-plugin-import": "^1.13.0",
     "customize-cra": "^0.9.1",
     "firebase": "^7.5.0",
+    "firestore": "^1.1.6",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "react": "^16.12.0",
