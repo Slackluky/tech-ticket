@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Row, Col, Typography} from 'antd';
 import { Link } from 'react-router-dom';
 import firestore from "./firestore";
 
@@ -15,14 +14,16 @@ import {
 } from 'antd';
 const {TextArea } = Input
 const {Header, Content} = Layout
+
 class UserForm extends Component {
-  state = {
-    confirmDirty: false,
-    autoCompleteResult: [],
-    user:[]
-  };
-
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      confirmDirty: false,
+      autoCompleteResult: [],
+      completed : false
+    };
+  }
 
   makeId() {
     var text = "";
@@ -36,27 +37,27 @@ class UserForm extends Component {
   
   handleSubmit = e => {
     e.preventDefault();
+
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (err) {
         return;
       }
-      const user = {
+      var user = {
         ...values,
         ticketId : this.makeId(),
-        date : new Date().toISOString()
+        date : new Date().toISOString(),
+        completed : false
       };
       
-       console.log(user)
-       this.props.form.resetFields()
+      firestore.collection("ticket").add(user);
+       this.props.form.resetFields();
        message.success('a new ticket is created successfuly');
       }
+      
     );
+    
   };
-
-  async addTodo() {
-    await firestore.collection("ticket").add(this.state.user);
-  }
-
+  
   handleConfirmBlur = e => {
     const { value } = e.target;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -116,7 +117,7 @@ class UserForm extends Component {
             </span>
           }
         >
-          {getFieldDecorator('Issue', {
+          {getFieldDecorator('issue', {
             rules: [{ required: true, message: 'Please input your Issue!', whitespace: true }],
           })(<TextArea name="issue" />)}
         </Form.Item>
@@ -125,6 +126,7 @@ class UserForm extends Component {
             Register
           </Button>
         </Form.Item>
+      
       </Form>
       </Card>
       </Content>
