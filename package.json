@@ -6,6 +6,7 @@
   "dependencies": {
     "@firebase/app": "^0.5.0",
     "@firebase/firestore": "^1.9.0",
+    "@firebase/messaging": "^0.6.0",
     "antd": "^3.26.0",
     "antd-dayjs-webpack-plugin": "0.0.5",
     "babel-plugin-import": "^1.13.0",

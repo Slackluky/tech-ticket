@@ -30,8 +30,16 @@ class Tech extends Component {
         ticket.id = doc.id;
         console.log(ticket)
         if (!ticket.completed) tickets.push(ticket);
-        this.setState({tickets : tickets})
+
+        
       });
+      tickets.sort(function(a, b) {
+        return (
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+      });
+      // Anytime the state of our database changes, we update state
+      this.setState({ tickets });
     });
   }
 
@@ -57,7 +65,6 @@ class Tech extends Component {
         renderItem={(ticket)=>(
           
           <List.Item
-          key={ticket.ticketId}
             >
               <Card
               style={{ marginRight : '10px', marginLeft: '10px'}}

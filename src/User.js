@@ -45,7 +45,7 @@ class UserForm extends Component {
       var user = {
         ...values,
         ticketId : this.makeId(),
-        date : new Date().toISOString(),
+        date : new Date().toUTCString(),
         completed : false
       };
       
