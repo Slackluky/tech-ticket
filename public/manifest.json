@@ -1,11 +1,8 @@
 {
-<<<<<<< HEAD
   "short_name": "Tech Ticketing System",
   "name": "Tech Ticketing System",
-=======
   "short_name": "Tech Ticketing",
   "name": "Tech Ticketing",
->>>>>>> 1669aef0885d0acf5dca669f6a3a08738880142e
   "icons": [
     {
       "src": "favicon.ico",
